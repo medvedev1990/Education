@@ -10,5 +10,9 @@ public interface MainActivityContract {
         public void initializationListeners();
 
         public void displayToast(String withText);
+
+        public void transitionSecondActiviy();
+
+        public void shareAction();
     }
 }

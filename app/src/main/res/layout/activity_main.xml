@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.vicmikhailau.maskededittext.MaskedEditText
+        android:id="@+id/maskededittext_activity_main_fortest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mask="+7 (###) ### ##-##"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:background="@drawable/project_rounded_circled_blue_6dp"
+        android:layout_margin="15dp" />
+
     <EditText
         android:id="@+id/edittext_activity_main_login"
         android:layout_margin="15dp"
@@ -15,6 +27,7 @@
         android:background="@drawable/project_rounded_circled_blue_6dp"
         android:padding="10dp"
         android:singleLine="true"
+        android:layout_below="@+id/maskededittext_activity_main_fortest"
         android:textSize="14sp"
         android:hint="@string/activity_main_login_field"
         android:layout_width="match_parent"
@@ -44,6 +57,18 @@
         android:background="@drawable/project_rounded_blue_6dp"
         android:text="@string/activity_main_action_login"
         android:layout_centerInParent="true"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/button_activity_main_share"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/project_rounded_blue_6dp"
+        android:layout_below="@+id/button_activity_main_transition"
+        android:layout_width="wrap_content"
+        android:textColor="#ffffff"
+        android:foreground="?attr/selectableItemBackground"
+        android:text="@string/activity_main_action_share"
         android:layout_height="wrap_content" />
 
 </RelativeLayout>
