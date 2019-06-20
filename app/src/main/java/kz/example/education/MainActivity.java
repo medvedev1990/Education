@@ -98,11 +98,6 @@ public class MainActivity extends AppCompatActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 12){
-            if (resultCode == PERMISSION.GRANTED) {
-
-            }
-        }
     }
 
     @Override
@@ -115,11 +110,6 @@ public class MainActivity extends AppCompatActivity implements
         //intent.putExtra(android.content.Intent.EXTRA_SUBJECT,"TITLE");
         //intent.putExtra(android.content.Intent.EXTRA_TEXT, "Я сообщение");
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new int[]{Manifest.permission.CALL_PHONE}, 12);
-        }else{
-            startActivity(intent);
-        }
         //startActivity(Intent.createChooser(intent, "Поделиться"));
     }
 }

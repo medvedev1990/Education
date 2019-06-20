@@ -14,7 +14,9 @@ import android.widget.TextView;
 import kz.example.education.R;
 import kz.example.education.contract.SecondActivityContract;
 
-public class SecondActivity  extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener,
+public class SecondActivity  extends AppCompatActivity implements
+        CompoundButton.OnCheckedChangeListener,
+        RadioGroup.OnCheckedChangeListener,
         SecondActivityContract.View{
 
     Switch mSwitchVisibilityOption;
@@ -49,7 +51,6 @@ public class SecondActivity  extends AppCompatActivity implements CompoundButton
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d(SecondActivity.class.getName(), "OnResume");
     }
 
     @Override
@@ -71,7 +72,17 @@ public class SecondActivity  extends AppCompatActivity implements CompoundButton
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()){
             case R.id.switch_second_activity_hide_views:
-                mRadioGroupTextOptions.setVisibility(View.INVISIBLE);
+                if(isChecked){
+                    mRadioGroupTextOptions.setVisibility(View.GONE);
+                    mCheckBoxTextViewVisibility.setVisibility(View.GONE);
+
+                    if(mCheckBoxTextViewVisibility.isChecked()) mTextViewTextRepresentation.setVisibility(View.VISIBLE);
+                    else mTextViewTextRepresentation.setVisibility(View.GONE);
+                }else{
+                    mRadioGroupTextOptions.setVisibility(View.VISIBLE);
+                    mTextViewTextRepresentation.setVisibility(View.VISIBLE);
+                    mCheckBoxTextViewVisibility.setVisibility(View.VISIBLE);
+                }
                 break;
 
             case R.id.checkbox_second_activity_deny_hide:
@@ -83,6 +94,7 @@ public class SecondActivity  extends AppCompatActivity implements CompoundButton
     public void initializeListeners() {
         mCheckBoxTextViewVisibility.setOnCheckedChangeListener(this);
         mSwitchVisibilityOption.setOnCheckedChangeListener(this);
+        mRadioGroupTextOptions.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -91,5 +103,20 @@ public class SecondActivity  extends AppCompatActivity implements CompoundButton
         mRadioGroupTextOptions = (RadioGroup)findViewById(R.id.radiogroup_activity_second_text_chooser);
         mCheckBoxTextViewVisibility = (CheckBox)findViewById(R.id.checkbox_second_activity_deny_hide);
         mSwitchVisibilityOption = (Switch)findViewById(R.id.switch_second_activity_hide_views);
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        switch (checkedId){
+            case R.id.radiobutton_activity_second_happy_text:
+                mTextViewTextRepresentation.setText(getString(R.string.activity_second_radiobutton_happy_text));
+                break;
+            case R.id.radiobutton_activity_second_sad_text:
+                mTextViewTextRepresentation.setText(getString(R.string.activity_second_radiobutton_sad_text));
+                break;
+            case R.id.radiobutton_activity_second_glory_text:
+                mTextViewTextRepresentation.setText(getString(R.string.activity_second_radiobutton_glory_text));
+                break;
+        }
     }
 }
