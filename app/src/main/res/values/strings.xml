@@ -7,4 +7,10 @@
     <string name="activity_main_action_share">Поделиться</string>
     <string name="activity_main_toast_message_login_success">Авторизация успешна</string>
     <string name="activity_main_toast_message_login_failure">Авторизация не пройдена!</string>
+
+
+    <string name="activity_second_radiobutton_happy_text">Happy Text</string>
+    <string name="activity_second_radiobutton_sad_text">Sad Text</string>
+    <string name="activity_second_radiobutton_glory_text">Glory Text</string>
+    <string name="activity_second_hint_example">Text will be displayed here!</string>
 </resources>
