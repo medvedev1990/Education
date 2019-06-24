@@ -3,6 +3,9 @@
     package="kz.example.education">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,18 +14,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
 
-        <activity android:name=".activities.SecondActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/SeconActivityStyle"
+        <receiver
+            android:name="kz.example.education.receiver.WifiStateReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
+                <action android:name="android.net.wifi.STATE_CHANGE"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activities.ListActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".activities.MainActivity">
+        </activity>
+
+        <activity android:name=".activities.SecondActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/SeconActivityStyle"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 

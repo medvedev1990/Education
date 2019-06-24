@@ -14,5 +14,8 @@ public interface MainActivityContract {
         public void transitionSecondActiviy();
 
         public void shareAction();
+
+        public void callReceiver();
+
     }
 }

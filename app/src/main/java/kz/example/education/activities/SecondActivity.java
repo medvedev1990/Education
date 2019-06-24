@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioGroup;
@@ -72,7 +74,8 @@ public class SecondActivity  extends AppCompatActivity implements
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()){
             case R.id.switch_second_activity_hide_views:
-                if(isChecked){
+                startAnimation();
+                /*if(isChecked){
                     mRadioGroupTextOptions.setVisibility(View.GONE);
                     mCheckBoxTextViewVisibility.setVisibility(View.GONE);
 
@@ -82,7 +85,7 @@ public class SecondActivity  extends AppCompatActivity implements
                     mRadioGroupTextOptions.setVisibility(View.VISIBLE);
                     mTextViewTextRepresentation.setVisibility(View.VISIBLE);
                     mCheckBoxTextViewVisibility.setVisibility(View.VISIBLE);
-                }
+                }*/
                 break;
 
             case R.id.checkbox_second_activity_deny_hide:
@@ -118,5 +121,33 @@ public class SecondActivity  extends AppCompatActivity implements
                 mTextViewTextRepresentation.setText(getString(R.string.activity_second_radiobutton_glory_text));
                 break;
         }
+    }
+
+    @Override
+    public Animation initializeAnimation() {
+        Animation goneAnimation = AnimationUtils.loadAnimation(this, R.anim.alpha_gone);
+        goneAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        return goneAnimation;
+    }
+
+    @Override
+    public void startAnimation() {
+        mRadioGroupTextOptions.startAnimation(initializeAnimation());
+
     }
 }
