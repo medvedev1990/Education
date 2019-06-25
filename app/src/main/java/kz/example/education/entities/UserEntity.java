@@ -8,7 +8,7 @@ public class UserEntity {
 
     private int mark;
 
-    private float GPA;
+    private Float GPA;
 
     private String Faculty;
 
@@ -42,11 +42,11 @@ public class UserEntity {
         this.mark = mark;
     }
 
-    public float getGPA() {
+    public Float getGPA() {
         return GPA;
     }
 
-    public void setGPA(float GPA) {
+    public void setGPA(Float GPA) {
         this.GPA = GPA;
     }
 

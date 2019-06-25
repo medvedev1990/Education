@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 
 import kz.example.education.R;
-import kz.example.education.contract.UsersActivityContract;
+import kz.example.education.adapters.UsersAdapter;
 import kz.example.education.contract.UsersActivityContract.View;
 import kz.example.education.entities.UserEntity;
 
@@ -17,12 +17,18 @@ public class UsersListActivity extends AppCompatActivity implements View{
 
     RecyclerView mRecyclerViewUsers;
     LinearLayoutManager mLinearLayoutManagerVerticalUsers;
+    UsersAdapter mUsersAdapterUsers;
+
     ArrayList<UserEntity> mArrayListUsers = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users_list);
+
+        initializeViews();
+        initializeArray();
+        initializeAdapter();
     }
 
     @Override
@@ -32,8 +38,10 @@ public class UsersListActivity extends AppCompatActivity implements View{
 
     @Override
     public void initializeAdapter() {
+        mUsersAdapterUsers = new UsersAdapter(this, mArrayListUsers);
         mLinearLayoutManagerVerticalUsers = new LinearLayoutManager(this);
         mRecyclerViewUsers.setLayoutManager(mLinearLayoutManagerVerticalUsers);
+        mRecyclerViewUsers.setAdapter(mUsersAdapterUsers);
     }
 
     @Override
@@ -49,6 +57,8 @@ public class UsersListActivity extends AppCompatActivity implements View{
             userEntity.setGPA(3.3f);
             userEntity.setMark(95);
             userEntity.setUniversity("Royal University");
+
+            mArrayListUsers.add(userEntity);
         }
     }
 }

@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import kz.example.education.R;
@@ -27,18 +29,22 @@ public class UsersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(viewType == 1){
-            View view = LayoutInflater.from(context).inflate(R.layout.item_user_recyclerview_user, parent);
-            return new UsersHolder(view);
-        }else{
-            View view = LayoutInflater.from(context).inflate(R.layout.item_user_recyclerview_user, parent);
-            return new UsersHolder(view);
-        }
+        View view = LayoutInflater.from(context).inflate(R.layout.item_user_recyclerview_user, parent, false);
+        return new UsersHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        UsersHolder usersHolder = (UsersHolder)holder;
 
+        Picasso.get().load(R.drawable.nature).into(usersHolder.mImageViewImage);
+
+        usersHolder.mTextViewName.setText(mArrayListUsers.get(position).getName());
+        usersHolder.mTextViewSurname.setText(mArrayListUsers.get(position).getSurname());
+        usersHolder.mTextViewMark.setText(Integer.toString(mArrayListUsers.get(position).getMark()));
+        usersHolder.mTextViewGpa.setText(Float.toString(mArrayListUsers.get(position).getGPA()));
+        usersHolder.mTextViewUniversity.setText(mArrayListUsers.get(position).getUniversity());
+        usersHolder.mTextViewFaculty.setText(mArrayListUsers.get(position).getFaculty());
     }
 
     @Override
