@@ -2,7 +2,9 @@ package kz.example.education.entities;
 
 public class UserEntity {
 
-    private String name;
+    private int user_id = -1;
+
+    private String name = "";
 
     private String surname;
 
@@ -17,6 +19,36 @@ public class UserEntity {
     private String Address;
 
     private String Country;
+
+    private String mBannerImage;
+
+    public String getmBannerImage() {
+        return mBannerImage;
+    }
+
+    public void setmBannerImage(String mBannerImage) {
+        this.mBannerImage = mBannerImage;
+    }
+
+    public String getmBannerTitle() {
+        return mBannerTitle;
+    }
+
+    public void setmBannerTitle(String mBannerTitle) {
+        this.mBannerTitle = mBannerTitle;
+    }
+
+    private String mBannerTitle;
+
+    public Boolean getChecked() {
+        return Checked;
+    }
+
+    public void setChecked(Boolean checked) {
+        Checked = checked;
+    }
+
+    private Boolean Checked = false;
 
     public String getName() {
         return name;

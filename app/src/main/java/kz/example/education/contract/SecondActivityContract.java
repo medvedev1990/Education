@@ -12,6 +12,8 @@ public interface SecondActivityContract {
         public Animation initializeAnimation();
 
         public void startAnimation();
+
+        public void runTransitionAnimation();
     }
 }
 

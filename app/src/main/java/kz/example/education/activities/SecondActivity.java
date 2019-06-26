@@ -74,7 +74,8 @@ public class SecondActivity  extends AppCompatActivity implements
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         switch (buttonView.getId()){
             case R.id.switch_second_activity_hide_views:
-                startAnimation();
+                //startAnimation();
+                runTransitionAnimation();
                 /*if(isChecked){
                     mRadioGroupTextOptions.setVisibility(View.GONE);
                     mCheckBoxTextViewVisibility.setVisibility(View.GONE);
@@ -149,5 +150,11 @@ public class SecondActivity  extends AppCompatActivity implements
     public void startAnimation() {
         mRadioGroupTextOptions.startAnimation(initializeAnimation());
 
+    }
+
+    @Override
+    public void runTransitionAnimation() {
+        Animation anim = AnimationUtils.loadAnimation(this, R.anim.switch_transition_anim);
+        mSwitchVisibilityOption.startAnimation(anim);
     }
 }

@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import java.util.ArrayList;
 
@@ -42,6 +44,11 @@ public class UsersListActivity extends AppCompatActivity implements View{
         mLinearLayoutManagerVerticalUsers = new LinearLayoutManager(this);
         mRecyclerViewUsers.setLayoutManager(mLinearLayoutManagerVerticalUsers);
         mRecyclerViewUsers.setAdapter(mUsersAdapterUsers);
+
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(this,
+                R.anim.recyclerview_layout_animation_fall);
+
+        mRecyclerViewUsers.setLayoutAnimation(animation);
     }
 
     @Override
@@ -57,6 +64,12 @@ public class UsersListActivity extends AppCompatActivity implements View{
             userEntity.setGPA(3.3f);
             userEntity.setMark(95);
             userEntity.setUniversity("Royal University");
+
+            if(i%5 == 0){
+                userEntity.setName("");
+                userEntity.setmBannerImage("https://images.pexels.com/photos/302769/pexels-photo-302769.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+                userEntity.setmBannerTitle("Услуги строительной компании!");
+            }
 
             mArrayListUsers.add(userEntity);
         }

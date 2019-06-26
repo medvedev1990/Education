@@ -1,11 +1,18 @@
 package kz.example.education.adapters;
 
 import android.content.Context;
+import android.media.Image;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SwitchCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +28,8 @@ public class UsersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     Context context;
     ArrayList<UserEntity> mArrayListUsers = new ArrayList<>();
 
+    int lastPosition = -1;
+
     public UsersAdapter(Context context, ArrayList<UserEntity> mArrayListUsers){
         this.context = context;
         this.mArrayListUsers = mArrayListUsers;
@@ -29,22 +38,40 @@ public class UsersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_user_recyclerview_user, parent, false);
-        return new UsersHolder(view);
+        if(viewType == 1){
+            View view = LayoutInflater.from(context).inflate(R.layout.item_user_recyclerview_user, parent, false);
+            return new UsersHolder(view);
+        }else{
+            View view = LayoutInflater.from(context).inflate(R.layout.item_advertisement_users_list, parent, false);
+            return new AdvertisementHolder(view);
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        UsersHolder usersHolder = (UsersHolder)holder;
+        if(getItemViewType(position) == 1){
+            ((UsersHolder)holder).bind(mArrayListUsers.get(position));
+        }else{
+            ((AdvertisementHolder)holder).bind(mArrayListUsers.get(position));
+        }
+        Animation animation = null;
+        if (position > lastPosition) {
+            animation = AnimationUtils.loadAnimation(context, R.anim.slide_from_bottom);
+        }else{
+            animation = AnimationUtils.loadAnimation(context, R.anim.slide_from_top);
+        }
+        lastPosition = position;
+        holder.itemView.setAnimation(animation);
+    }
 
-        Picasso.get().load(R.drawable.nature).into(usersHolder.mImageViewImage);
-
-        usersHolder.mTextViewName.setText(mArrayListUsers.get(position).getName());
-        usersHolder.mTextViewSurname.setText(mArrayListUsers.get(position).getSurname());
-        usersHolder.mTextViewMark.setText(Integer.toString(mArrayListUsers.get(position).getMark()));
-        usersHolder.mTextViewGpa.setText(Float.toString(mArrayListUsers.get(position).getGPA()));
-        usersHolder.mTextViewUniversity.setText(mArrayListUsers.get(position).getUniversity());
-        usersHolder.mTextViewFaculty.setText(mArrayListUsers.get(position).getFaculty());
+    @Override
+    public void onViewDetachedFromWindow(@NonNull RecyclerView.ViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        if(getItemViewType(holder.getAdapterPosition()) == 1){
+            ((UsersHolder)holder).clearAnimation();
+        }else{
+            ((AdvertisementHolder)holder).clearAnimation();
+        }
     }
 
     @Override
@@ -70,6 +97,7 @@ public class UsersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         TextView mTextViewGpa;
         TextView mTextViewUniversity;
         TextView mTextViewFaculty;
+        SwitchCompat mSwitchCompatChecked;
 
         public UsersHolder(View itemView) {
             super(itemView);
@@ -81,6 +109,50 @@ public class UsersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
              mTextViewGpa = (TextView)itemView.findViewById(R.id.textview_item_recyclerview_user_gpa);;
              mTextViewUniversity = (TextView)itemView.findViewById(R.id.textview_item_recyclerview_user_university);;
              mTextViewFaculty = (TextView)itemView.findViewById(R.id.textview_item_recyclerview_user_faculty);;
+             mSwitchCompatChecked = (SwitchCompat)itemView.findViewById(R.id.switch_item_user_recyclerview_switch);
+        }
+
+        public void bind(UserEntity entity){
+            Picasso.get().load(R.drawable.nature).into(mImageViewImage);
+
+            mTextViewName.setText(entity.getName());
+            mTextViewSurname.setText(entity.getSurname());
+            mTextViewMark.setText(Integer.toString(entity.getMark()));
+            mTextViewGpa.setText(Float.toString(entity.getGPA()));
+            mTextViewUniversity.setText(entity.getUniversity());
+            mTextViewFaculty.setText(entity.getFaculty());
+
+            if(entity.getChecked()){
+                mSwitchCompatChecked.setChecked(true);
+            }else{
+                mSwitchCompatChecked.setChecked(false);
+            }
+        }
+
+        public void clearAnimation(){
+            itemView.clearAnimation();
+        }
+    }
+
+    public class AdvertisementHolder extends RecyclerView.ViewHolder{
+
+        ImageView mImageViewBanner;
+        TextView mTextViewText;
+
+        public AdvertisementHolder(View itemView) {
+            super(itemView);
+
+            mImageViewBanner = (ImageView) itemView.findViewById(R.id.item_advertisement_users_list_banner);
+            mTextViewText = (TextView) itemView.findViewById(R.id.item_advertisement_users_list_title);
+        }
+
+        public void bind(UserEntity entity){
+            Picasso.get().load(R.drawable.users_list_advertisement_icon).into(mImageViewBanner);
+            mTextViewText.setText(entity.getmBannerTitle());
+        }
+
+        public void clearAnimation(){
+            itemView.clearAnimation();
         }
     }
 }
