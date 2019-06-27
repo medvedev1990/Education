@@ -1,4 +1,4 @@
-package kz.example.education.utils;
+package kz.example.education.presentation.utils;
 
 public class Constants {
 

@@ -1,4 +1,4 @@
-package kz.example.education.entities;
+package kz.example.education.presentation.entities;
 
 public class UserEntity {
 

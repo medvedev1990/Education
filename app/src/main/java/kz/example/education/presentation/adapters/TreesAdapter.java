@@ -1,4 +1,4 @@
-package kz.example.education.adapters;
+package kz.example.education.presentation.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import kz.example.education.R;
-import kz.example.education.interfaces.IClickInterface;
+import kz.example.education.presentation.interfaces.IClickInterface;
 
 public class TreesAdapter extends BaseAdapter {
 

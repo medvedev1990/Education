@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <receiver
-            android:name="kz.example.education.receiver.WifiStateReceiver"
+            android:name=".presentation.receiver.WifiStateReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.wifi.WIFI_STATE_CHANGED"/>
@@ -24,7 +24,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activities.UsersListActivity">
+        <activity android:name=".presentation.activities.UsersListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,16 +32,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.ListActivity"
+        <activity android:name=".presentation.activities.ListActivity"
             android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".presentation.activities.MainActivity">
         </activity>
 
-        <activity android:name=".activities.SecondActivity"
+        <activity android:name=".presentation.activities.SecondActivity"
             android:launchMode="singleTop"
             android:theme="@style/SeconActivityStyle"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".presentation.activities.ThreadActivity"
             android:screenOrientation="portrait">
         </activity>
     </application>

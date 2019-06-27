@@ -1,19 +1,18 @@
-package kz.example.education.activities;
+package kz.example.education.presentation.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import kz.example.education.R;
-import kz.example.education.adapters.TreesAdapter;
-import kz.example.education.contract.ListActivityContract;
-import kz.example.education.interfaces.IClickInterface;
+import kz.example.education.presentation.adapters.TreesAdapter;
+import kz.example.education.presentation.contract.ListActivityContract;
+import kz.example.education.presentation.interfaces.IClickInterface;
 
 public class ListActivity extends AppCompatActivity implements ListActivityContract.View, IClickInterface{
 

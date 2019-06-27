@@ -1,6 +1,4 @@
-package kz.example.education.contract;
-
-import android.view.View;
+package kz.example.education.presentation.contract;
 
 public interface UsersActivityContract  {
     public interface  View {
@@ -8,12 +6,16 @@ public interface UsersActivityContract  {
 
         public void initializeAdapter();
 
-        public void initializeArray();
-
         public void initializeListeners();
 
         public void startValueAnimator();
 
         public void startFadeTextAnimator();
+
+        public void restoreButton();
+
+        public void animateButton();
+
+        public void initializeContract();
     }
 }

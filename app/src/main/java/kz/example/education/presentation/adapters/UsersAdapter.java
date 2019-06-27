@@ -1,18 +1,14 @@
-package kz.example.education.adapters;
+package kz.example.education.presentation.adapters;
 
 import android.content.Context;
-import android.media.Image;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +17,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import kz.example.education.R;
-import kz.example.education.entities.UserEntity;
+import kz.example.education.presentation.entities.UserEntity;
 
 public class UsersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -67,11 +63,6 @@ public class UsersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onViewDetachedFromWindow(@NonNull RecyclerView.ViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
-        if(getItemViewType(holder.getAdapterPosition()) == 1){
-            ((UsersHolder)holder).clearAnimation();
-        }else{
-            ((AdvertisementHolder)holder).clearAnimation();
-        }
     }
 
     @Override

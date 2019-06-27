@@ -1,4 +1,4 @@
-package kz.example.education.activities;
+package kz.example.education.presentation.activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -21,9 +21,9 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.util.List;
 
 import kz.example.education.R;
-import kz.example.education.receiver.WifiStateReceiver;
-import kz.example.education.contract.MainActivityContract;
-import kz.example.education.utils.Constants;
+import kz.example.education.presentation.receiver.WifiStateReceiver;
+import kz.example.education.presentation.contract.MainActivityContract;
+import kz.example.education.presentation.utils.Constants;
 
 public class MainActivity extends AppCompatActivity implements
         View.OnClickListener,

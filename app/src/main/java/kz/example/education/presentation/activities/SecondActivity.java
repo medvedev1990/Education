@@ -1,10 +1,8 @@
-package kz.example.education.activities;
+package kz.example.education.presentation.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
@@ -14,7 +12,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import kz.example.education.R;
-import kz.example.education.contract.SecondActivityContract;
+import kz.example.education.presentation.contract.SecondActivityContract;
 
 public class SecondActivity  extends AppCompatActivity implements
         CompoundButton.OnCheckedChangeListener,

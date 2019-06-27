@@ -1,4 +1,4 @@
-package kz.example.education.contract;
+package kz.example.education.presentation.contract;
 
 public interface MainActivityContract {
 

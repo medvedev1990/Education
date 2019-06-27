@@ -1,4 +1,4 @@
-package kz.example.education.interfaces;
+package kz.example.education.presentation.interfaces;
 
 import android.view.View;
 
