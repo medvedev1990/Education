@@ -16,6 +16,6 @@ public interface UsersActivityContract  {
 
         public void animateButton();
 
-        public void initializeContract();
+        public void initializeUseCases();
     }
 }

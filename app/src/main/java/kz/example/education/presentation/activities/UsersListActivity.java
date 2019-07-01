@@ -44,11 +44,12 @@ public class UsersListActivity extends AppCompatActivity implements View, androi
         setContentView(R.layout.activity_users_list);
 
         initializeViews();
+        initializeUseCases();
         initializeAdapter();
     }
 
     @Override
-    public void initializeContract() {
+    public void initializeUseCases() {
         getUsersUseCase = new GetUsersUseCase();
     }
 
