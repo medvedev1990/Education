@@ -2,6 +2,7 @@ package kz.example.education.presentation.fragments;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,8 +15,9 @@ import org.w3c.dom.Text;
 import kz.example.education.R;
 import kz.example.education.presentation.activities.SplashActivity;
 import kz.example.education.presentation.base.BaseFragment;
+import kz.example.education.presentation.contract.SplashFragmentContract;
 
-public class SplashFragment extends BaseFragment {
+public class SplashFragment extends BaseFragment implements SplashFragmentContract.View{
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +30,13 @@ public class SplashFragment extends BaseFragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         System.out.println("CALLED");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                viewPagerTransition();
+            }
+        }, 3000);
 
         return baseView;
     }
@@ -46,5 +55,11 @@ public class SplashFragment extends BaseFragment {
     @Override
     public int onLayoutId() {
         return R.layout.fragment_splash;
+    }
+
+    @Override
+    public void viewPagerTransition() {
+        ViewPagerFragment viewPagerFragment = new ViewPagerFragment();
+        getBaseActivity().displayFragment(viewPagerFragment);
     }
 }

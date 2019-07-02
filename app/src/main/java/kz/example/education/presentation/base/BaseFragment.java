@@ -18,6 +18,10 @@ public abstract class BaseFragment extends Fragment {
 
     public abstract int onLayoutId();
 
+    public BaseActivity getBaseActivity(){
+        return (BaseActivity)getActivity();
+    }
+
     @Override
     public void onResume() {
         super.onResume();

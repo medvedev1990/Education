@@ -27,6 +27,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         return R.layout.activity_base;
     }
 
+    public BaseActivity getMainActivity(){
+        return this;
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +65,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             fragmentTransaction.hide(getCurrentFragment());
         }
 
-        fragmentTransaction.add(R.id.framelayout_activity_base_fragment_container, baseFragment, baseFragment.getFragmentTag());
+        fragmentTransaction.replace(R.id.framelayout_activity_base_fragment_container, baseFragment, baseFragment.getFragmentTag());
         fragmentTransaction.commit();
     }
 
