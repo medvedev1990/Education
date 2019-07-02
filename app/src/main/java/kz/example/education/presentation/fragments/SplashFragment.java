@@ -27,7 +27,7 @@ public class SplashFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
 
-        System.out.println("CALLED");
+        System.out.println("CALLED ");
 
         return baseView;
     }
