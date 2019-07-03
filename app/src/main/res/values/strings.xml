@@ -18,4 +18,10 @@
     <string name="activity_second_radiobutton_sad_text">Sad Text</string>
     <string name="activity_second_radiobutton_glory_text">Glory Text</string>
     <string name="activity_second_hint_example">Text will be displayed here!</string>
+
+    <string name="bottom_navigation_profile">Профиль</string>
+    <string name="bottom_navigation_camera">Камера</string>
+    <string name="bottom_navigation_player">Плеер</string>
+    <string name="bottom_navigation_splash">Сплашь</string>
+    <string name="bottom_navigation_list">Список</string>
 </resources>

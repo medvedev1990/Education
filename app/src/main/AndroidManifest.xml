@@ -24,6 +24,24 @@
 
         <activity
             android:screenOrientation="portrait"
+            android:name=".presentation.activities.CameraActivity">
+
+        </activity>
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".presentation.activities.PlayerActivity">
+
+        </activity>
+
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".presentation.activities.ProfileActivity">
+
+        </activity
+            >
+        <activity
+            android:screenOrientation="portrait"
             android:name=".presentation.activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

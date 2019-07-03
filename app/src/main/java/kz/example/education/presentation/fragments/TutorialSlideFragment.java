@@ -24,6 +24,7 @@ public class TutorialSlideFragment extends BaseFragment {
 
         initializeViews();
         initializeImage();
+
         return baseView;
     }
 

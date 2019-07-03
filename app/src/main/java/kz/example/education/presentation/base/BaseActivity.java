@@ -1,19 +1,29 @@
 package kz.example.education.presentation.base;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import kz.example.education.R;
+import kz.example.education.presentation.activities.CameraActivity;
+import kz.example.education.presentation.activities.PlayerActivity;
+import kz.example.education.presentation.activities.ProfileActivity;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     private Toolbar mToolbarBase;
     private TextView mTextViewToolbarTitle;
+    private BottomNavigationView mBottomNavigationView;
 
     public Toolbar getBaseToolbar(){
         return mToolbarBase;
@@ -38,9 +48,20 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         initializeSupportToolbar();
         initializeFragment();
+
+        initializeBottomNavigationView();
+        initializeBottomNavigationListener();
     }
 
     public abstract BaseFragment onInitFragment();
+
+    public void initializeBottomNavigationView(){
+        mBottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomnavigation_activity_base_navigation);
+    }
+
+    public void initializeBottomNavigationListener(){
+        mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+    }
 
     public void initializeSupportToolbar(){
         mToolbarBase = (Toolbar)findViewById(R.id.activity_base_toolbar);
@@ -87,5 +108,39 @@ public abstract class BaseActivity extends AppCompatActivity {
         }else{
             finish();
         }
+    }
+
+    public void navigate(Class activity){
+        Intent navigator = new Intent(this, activity);
+        startActivity(navigator);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_list:
+                mBottomNavigationView.getMenu().findItem(R.id.action_list).setChecked(true);
+                break;
+
+            case R.id.action_player:
+                navigate(PlayerActivity.class);
+                mBottomNavigationView.getMenu().findItem(R.id.action_player).setChecked(true);
+                break;
+
+            case R.id.action_camera:
+                navigate(CameraActivity.class);
+                mBottomNavigationView.getMenu().findItem(R.id.action_camera).setChecked(true);
+                break;
+
+            case R.id.action_profile:
+                navigate(ProfileActivity.class);
+                mBottomNavigationView.getMenu().findItem(R.id.action_profile).setChecked(true);
+                break;
+
+            case R.id.action_splash:
+                mBottomNavigationView.getMenu().findItem(R.id.action_splash).setChecked(true);
+                break;
+        }
+        return false;
     }
 }
