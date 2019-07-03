@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import kz.example.education.R;
 import kz.example.education.presentation.activities.CameraActivity;
 import kz.example.education.presentation.activities.PlayerActivity;
@@ -139,6 +142,17 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
             case R.id.action_splash:
                 mBottomNavigationView.getMenu().findItem(R.id.action_splash).setChecked(true);
+                break;
+
+            case R.id.action_alarm_add:
+                Date dat  = new Date();//initializes to now
+                Calendar cal_alarm = Calendar.getInstance();
+                Calendar cal_now = Calendar.getInstance();
+                cal_now.setTime(dat);
+                cal_alarm.setTime(dat);
+                cal_alarm.set(Calendar.HOUR_OF_DAY,5);//set the alarm time
+                cal_alarm.set(Calendar.MINUTE, 59);
+                cal_alarm.set(Calendar.SECOND,0);
                 break;
         }
         return false;

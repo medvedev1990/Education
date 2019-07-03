@@ -24,4 +24,7 @@
     <string name="bottom_navigation_player">Плеер</string>
     <string name="bottom_navigation_splash">Сплашь</string>
     <string name="bottom_navigation_list">Список</string>
+    <string name="bottom_navigation_alarm_add1">Будильник</string>
+    <string name="bottom_navigation_search_bluetooth">Bluetooth</string>
+
 </resources>

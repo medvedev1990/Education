@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+    android:id="@+id/action_alarm_add"
+    android:enabled="true"
+    android:icon="@drawable/ic_alarm_add"
+    android:title="@string/bottom_navigation_alarm_add1"
+    />
+    <item
+        android:id="@+id/action_on_bluetooth"
+        android:enabled="true"
+        android:icon="@drawable/ic_settings_bluetooth"
+        android:title="@string/bottom_navigation_search_bluetooth"
+        />
+</menu>
