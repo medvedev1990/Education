@@ -3,11 +3,15 @@ package kz.example.education.presentation.base;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -22,11 +26,13 @@ import kz.example.education.presentation.activities.CameraActivity;
 import kz.example.education.presentation.activities.PlayerActivity;
 import kz.example.education.presentation.activities.ProfileActivity;
 
-public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
+public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar mToolbarBase;
     private TextView mTextViewToolbarTitle;
     private BottomNavigationView mBottomNavigationView;
+    private NavigationView mNavigationView;
+    private DrawerLayout mDrawerLayout;
 
     public Toolbar getBaseToolbar(){
         return mToolbarBase;
@@ -145,16 +151,46 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 break;
 
             case R.id.action_alarm_add:
-                Date dat  = new Date();//initializes to now
-                Calendar cal_alarm = Calendar.getInstance();
-                Calendar cal_now = Calendar.getInstance();
-                cal_now.setTime(dat);
-                cal_alarm.setTime(dat);
-                cal_alarm.set(Calendar.HOUR_OF_DAY,5);//set the alarm time
-                cal_alarm.set(Calendar.MINUTE, 59);
-                cal_alarm.set(Calendar.SECOND,0);
+                Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                        .putExtra(AlarmClock.EXTRA_MESSAGE, "мой будильник")
+                        .putExtra(AlarmClock.EXTRA_HOUR, 13)
+                        .putExtra(AlarmClock.EXTRA_MINUTES, 15);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+                mBottomNavigationView.getMenu().findItem(R.id.action_splash).setChecked(true);
                 break;
+
         }
         return false;
+    }
+    public void initializaNavigationDrawer(){
+        mDrawerLayout = new DrawerLayout(this);
+    }
+    public void initializaNavigationview(){
+        mNavigationView = (NavigationView)findViewById(R.id.navigationview_activity_start_navigator);
+    }
+
+    public void initializedDrawer(){
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,mDrawerLayout,mToolbarBase,R.string.Drawable_view_open,R.string.Drawable_view_close){
+
+            @Override
+            public void onDrawerOpened(View drawerView){
+                super.onDrawerOpened(drawerView);
+            }
+        @Override
+            public void onDrawerClosed(View drawerView){
+            super.onDrawerClosed(drawerView);}
+        };
+    }
+    public void InitializedListeneer(){
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if(item.isChecked()) item.setChecked(false);
+                else item.setChecked(true);
+                return false;
+            }
+        });
     }
 }

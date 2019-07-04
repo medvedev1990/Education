@@ -26,5 +26,8 @@
     <string name="bottom_navigation_list">Список</string>
     <string name="bottom_navigation_alarm_add1">Будильник</string>
     <string name="bottom_navigation_search_bluetooth">Bluetooth</string>
+    <string name="Drawable_view_open">Open</string>
+    <string name="Drawable_view_close">Close</string>
+
 
 </resources>
